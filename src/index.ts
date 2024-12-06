@@ -1,15 +1,23 @@
 import express, {Request, Response} from 'express';
 import mongoose from 'mongoose';
+import projectsRoutes from './routes/projectsRoutes';
+import tasksRoutes from './routes/tasksRoutes';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 
 // Créer notre app
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
 
+app.use('/api', projectsRoutes);
+app.use('/api', tasksRoutes);
 
-const uri = "mongodb://root:example@localhost:27017/";
-mongoose.connect(uri)
+const uri = process.env.URI;
+mongoose.connect(uri as string)
     .then(() => {
         console.log('Connected to MongoDB')
     })
@@ -17,10 +25,7 @@ mongoose.connect(uri)
         console.log('Error connecting to MongoDB', error)
     })
 
-// Route par défaut
-app.get('/', (req: Request, res: Response) => {
-    res.send('balbflasblfknag');
-})
+
 
 
 app.listen(PORT, () => {

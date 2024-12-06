@@ -1,0 +1,88 @@
+### PROJECTS
+
+###
+# Créer un projet
+POST http://localhost:3000/api/projects
+Content-Type: application/json
+
+{
+  "name": "Projet test",
+  "description": "mzedfgyujhjujhnbnjkjnbgt-è_ikj,nb"
+}
+
+###
+# Lister tous les projets
+GET http://localhost:3000/api/projects
+
+###
+# Récupérer un projet par id 
+GET http://localhost:3000/api/projects/6752f9755b8ec23e0b94be9f
+
+###
+# Mettre à jour un projet 
+PUT http://localhost:3000/api/projects/6752f9755b8ec23e0b94be9f
+Content-Type: application/json
+
+{
+  "status": "in-progress"
+}
+
+###
+# Marquer un projet comme complété
+POST http://localhost:3000/api/projects/6752ca94b7778f1a455f2492/complete
+
+###
+# Permet de filtrer les projets par leur statut
+GET http://localhost:3000/api/projects/by-status?status=in-progress
+
+###
+# Supprimer un projet 
+DELETE http://localhost:3000/api/projects/67530958f5d394a57717ef65
+
+
+### TASKS
+
+###
+# Créer une tâche
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "projectId": "6752f9755b8ec23e0b94be9f",
+  "title": "Ma 4854598457 tâche",
+  "dueDate": "2024-12-31"
+}
+
+###
+# Lister toutes les tâches
+GET http://localhost:3000/api/tasks
+
+###
+# Lister toutes les tâches (filtrer par projet)
+GET http://localhost:3000/api/tasks?projectId=6752f9755b8ec23e0b94be9f
+
+###
+# Filtrer les tâches dont la date d'échéance est avant une date donnée
+GET http://localhost:3000/api/Tasks/due-before?date=2024-12-31
+
+
+###
+# Récupérer une tâche par id 
+GET http://localhost:3000/api/tasks/6752cf81c6bdc4b276a9fd36
+
+###
+# Mettre à jour une tâche 
+PUT http://localhost:3000/api/tasks/6752ff9383581723c8e019c0
+Content-Type: application/json
+
+{
+  "title": "Tâche mise à jour"
+}
+
+###
+# Marquer une tâche comme faite 
+POST http://localhost:3000/api/tasks/6752cf69c6bdc4b276a9fd2b/mark-done
+
+###
+# Supprimer une tâche
+DELETE http://localhost:3000/api/tasks/6752ff9383581723c8e019c0
